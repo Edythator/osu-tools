@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\osu.Tools.props" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -14,5 +14,6 @@
   <ItemGroup>
     <PackageReference Include="Alba.CsConsoleFormat" Version="1.0.0" />
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
+    <PackageReference Include="MySql.Data" Version="8.0.19" />
   </ItemGroup>
 </Project>
