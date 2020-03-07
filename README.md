@@ -1,7 +1,9 @@
 # Edythator's version of osu!tools
 this is a version of osu!tools which modifies PerformanceCalculator in order to make it support reading data from mysql servers. this is useful if you want to calculate the pp of entire profiles using the database dumps from [data.ppy.sh](https://data.ppy.sh). 
 
+
 usage is simple; you edit line 152-155 in PerformanceCalculator/Profile/ProfileCommand.cs to input the details of your mysql server, then you compile, and you'll be done.
+
 you'll end up with a PerformanceCalculator.dll that will have a new commandline argument, -db/--database, which can be set to either true or false, and it defaults to false.
 
 oh yeah, this also fixes the DifficultyCommand.cs compiler errors so you don't have to manually patch them.
