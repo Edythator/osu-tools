@@ -149,12 +149,18 @@ namespace PerformanceCalculator.Profile
                 Console.WriteLine("Getting user data...");
                 dynamic userData = getJsonFromApi($"get_user?k={Key}&u={ProfileName}&m={Ruleset}")[0];
 
-                string server = "";
-                string database = "osu";
-                string mySqlUsername = "";
-                string mySqlPassword = "";
+                string[] config = { };
 
-                MySqlConnection connection = new MySqlConnection($"server={server};database={database};uid={mySqlUsername};password={mySqlPassword}");
+                if (File.Exists("db.cfg"))
+                    config = File.ReadAllLines("db.cfg");
+                else
+                {
+                    File.AppendAllLines("db.cfg", new string[] { "server=", "database=", "mysqlUsername=", "mySqlPassword=" });
+                    Console.WriteLine("config file generated, fill it in, and rerun this program");
+                    Environment.Exit(-1);
+                }
+
+                MySqlConnection connection = new MySqlConnection($"server={config[0].Split("=")[1]};database={config[1].Split("=")[1]};uid={config[2].Split("=")[1]};password={config[3].Split("=")[1]}");
                 MySqlCommand cmd = new MySqlCommand($"SELECT * FROM `osu_scores_high` WHERE `user_id` = {userData.user_id}", connection);
                 connection.Open();
                 MySqlDataReader rdr = cmd.ExecuteReader();
