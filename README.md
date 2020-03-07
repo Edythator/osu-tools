@@ -3,7 +3,7 @@ this is a version of osu!tools that modifies PerformanceCalculator in order to m
 
 usage is simple; you compile the project, run PerformaneCalculator.dll with the argument ```-db true```, fill in the config that it generates, and you'll be all set.
 
-the new commandline argument, -db, also has another alias, --database; -db can be set to either true or false, and it defaults to false.
+the new commandline argument, ```-db```, also has another alias, ```--database```; ```-db``` can be set to either ```true``` or ```false```, and it defaults to ```false```.
 
 oh yeah, this also fixes the DifficultyCommand.cs compiler errors so you don't have to manually patch them.
 
