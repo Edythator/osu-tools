@@ -165,6 +165,8 @@ namespace PerformanceCalculator.Profile
                 connection.Open();
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
+                List<string> buffer = new List<string>();
+
                 while (rdr.Read())
                 {
                     int pp = 0;
@@ -176,7 +178,7 @@ namespace PerformanceCalculator.Profile
                         string[] blacklist = { "1257904" };
 
                         if (beatmap_id != blacklist[0])
-                        File.AppendAllText("plays.txt", $"{beatmap_id}|{rdr.GetString("enabled_mods")}|{rdr.GetInt32("maxcombo")}|{rdr.GetInt32("countgeki")}|{rdr.GetInt32("count300")}|{rdr.GetInt32("count100")}|{rdr.GetInt32("countkatu")}|{rdr.GetInt32("count50")}|{rdr.GetInt32("countmiss")}|{pp}\n");
+                        buffer.Add($"{beatmap_id}|{rdr.GetString("enabled_mods")}|{rdr.GetInt32("maxcombo")}|{rdr.GetInt32("countgeki")}|{rdr.GetInt32("count300")}|{rdr.GetInt32("count100")}|{rdr.GetInt32("countkatu")}|{rdr.GetInt32("count50")}|{rdr.GetInt32("countmiss")}|{pp}\n");
                     }
                     catch (Exception e)
                     {
@@ -185,9 +187,6 @@ namespace PerformanceCalculator.Profile
                         continue;
                     }
                 }
-
-                string[] buffer = File.ReadAllLines("plays.txt");
-                File.Delete("plays.txt");
 
                 foreach (string s in buffer)
                 {
